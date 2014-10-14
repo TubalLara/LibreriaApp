@@ -8,35 +8,49 @@
         <input type="text" id="textBuscar" placeholder="Introduce una búsqueda" />
         <!--Creo que no necesito la propiedad name, debe estar en desuso
             consultar porque puede que la necesite como una especie de tipo común, o a lo mejor es mejor una clase-->
-        <br/>
+        <br />
         <input type="radio" name="filtro" id="rbtnIsbn" value="isbn" />ISBN
         <input type="radio" name="filtro" id="rbtnTitulo" value="titulo" />Título
         <input type="radio" name="filtro" id="rbtnPaginas" value="paginas" />Páginas
         <input type="radio" name="filtro" id="rbtnUnidades" value="unidades" />Unidades
-        <br/>
+        <br />
         <input type="button" id="btnBuscar" value="Buscar" />
 
     </div>
 
-    <div>
-        <div id="menuAñadir" style="display: none">
-            <!--Aquí tendré que cambiar como se muestra la capa para que se superponga y parezca más un diálogo-->
-            <input type="text" id="txtIsbn" placeholder="ISBN" />
-            <input type="text" id="txtTitulo" placeholder="Título" />
-            <input type="text" id="txtPaginas" placeholder="Páginas" /><!--comprobar si así está bien o debo poner aquí número o dejarlo como texto y comprobar que es un entero al pedir el dato-->
-            <input type="text" id="txtUnidades" placeholder="Unidades Vendidas" />
-            <input type="button" id="btnGuardar" value="Guardar" />
+    <div id="contenido">
+        <div id="menuAñadir" style="display: block">
+            <!--Aquí tendré que cambiar como se muestra la capa para que se superponga y parezca más un diálogo
+                Lo tengo ahora mismo con display en block para verla según sale y mientras arreglo como ocultarlo o no-->
+            <form>
+                <input type="text" id="txtIsbn" placeholder="ISBN" />
+                <input type="text" id="txtTitulo" placeholder="Título" />
+                <input type="text" id="txtPaginas" placeholder="Páginas" /><!--comprobar si así está bien o debo poner aquí número o dejarlo como texto y comprobar que es un entero al pedir el dato-->
+                <input type="text" id="txtUnidades" placeholder="Unidades Vendidas" />
+                <input type="button" id="btnGuardar" value="Guardar" />
+                <input type="hidden" value="" id="hdnId" />
+            </form>
+
+
         </div>
+
         <input type="button" id="btnAñadir" value="+" />
         <table id="tablaLibros"></table>
     </div>
 
     <div>
-        <ul id="listaVentas"></ul>
+        <ul id="listaVentas">
+            Lista de los Más Vendidos<!--Mirar poner en negrita simplemente para recordar hacerlo-->
+
+        </ul>
     </div>
 
     <div>
+        Top Ventas<!--Mirar subrayar simplemente para recordar hacerlo-->
         <canvas id="canvastopventas"></canvas>
     </div>
+
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
+    <script src="js/js1.js"></script>
 </body>
 </html>
