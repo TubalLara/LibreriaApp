@@ -1,4 +1,4 @@
-﻿var url = "http://alumnos-mcsd2013.azure-mobile.net/tables/";
+﻿var url = "http://alumnos-mcsd2014.azure-mobile.net/tables/libros";
 
 var mostrarMenu = function() {
     document.getElementById("menuAñadir").css("display", "block");
@@ -55,11 +55,11 @@ var cargarTabla = function (libros) {
     document.getElementById("contenido").appendChild(tabla);
 };
 var leerDatos = function () {
-    var urlFinal = url + "libros";//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
+   // var urlFinal = url + "libros";//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
 
 
     var ajax = new XMLHttpRequest();
-    ajax.open("GET", urlFinal);
+    ajax.open("GET", url);
     ajax.onreadystatechange = function () {
 
         if (ajax.readyState != 4)
@@ -67,8 +67,8 @@ var leerDatos = function () {
 
         if (ajax.status >= 200 && ajax.status < 300) {
             borrarTabla();
-            var datos = eval(ajax.responseText);
-            cargarTabla(datos);
+            var libros = eval(ajax.responseText);
+            cargarTabla(libros);
 
         } else {
             alert("Error recuperando informacion");
@@ -81,7 +81,7 @@ var leerDatos = function () {
 
 var modificar = function (evt) {
     var idelemento = evt.target.getAttribute("id");
-    var urlFinal = url + "libros/" + idelemento.split("-")[1];//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
+    var urlFinal = url + idelemento;//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
 
 
     var ajax = new XMLHttpRequest();
@@ -112,7 +112,7 @@ var modificar = function (evt) {
 
 
 var escribirDatos = function () {
-    var urlFinal = url + "libros";//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
+    //var urlFinal = url + "libros"//Repasar esto, ahora mismo no sé si lo necesito o puedo funcionar sin ello, y claro si no lo voy a usar cambiar lo de urlfinal
 
     var ajax = new XMLHttpRequest();
     var id = document.getElementById("hdnId").value;
@@ -123,13 +123,13 @@ var escribirDatos = function () {
         unidades: document.getElementById("txtUnidades").value
     };
     if (isNaN(id)) {
-        ajax.open("POST", urlFinal);
+        ajax.open("POST", url);
 
 
     } else {
-        urlFinal += "/" + id;
+        url += "/" + id;
         json.id = id;
-        ajax.open("PUT", urlFinal);
+        ajax.open("PATCH", url);
     }
 
 
@@ -157,7 +157,7 @@ var escribirDatos = function () {
 };
 var borrar = function (evt) {
     var idelemento = evt.target.getAttribute("id");
-    var urlFinal = url + "libros/" + idelemento.split("-")[1];
+    var urlFinal = url + idelemento;
 
     var ajax = new XMLHttpRequest();
     ajax.open("DELETE", urlFinal);
